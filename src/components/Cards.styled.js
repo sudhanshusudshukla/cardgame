@@ -2,19 +2,17 @@ import styled from "styled-components";
 import img from "../assets/poker-card-image.jpeg";
 
 export const CardContainer = styled.div`
-  align-items: center;
-  background-color: gray;
   border: 8px solid #fff;
   border-radius: 3rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 4rem;
-  margin-top: 4rem;
-  padding: 2rem;
 `;
 
-export const CardWrapper = styled.div``;
+export const CardWrapper = styled.div`
+  margin: 20px;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(52, 22px);
+  transition: grid-template-columns 0.5s;
+`;
 
 export const Card = styled.div`
   width: 300px;
@@ -26,9 +24,19 @@ export const Card = styled.div`
   :hover {
     > div {
       transform: rotateY(180deg);
-      transition: transform 0.5s;
+      transition: transform 1s;
+      position: absolute;
+      top: 300px;
     }
   }
+`;
+
+export const PickedCard = styled.div`
+  width: 300px;
+  height: 400px;
+  margin: 0 auto;
+  float: left;
+  perspective: 500px;
 `;
 
 export const CardDisplay = styled.div`
@@ -83,6 +91,19 @@ export const CardValueBack = styled.div`
   border-radius: 5px;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+  border: 2px solid #000;
+`;
+
+export const PickedCardValueBack = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  line-height: 300px;
+  color: ${(props) => (props.color === "black" ? "black" : "red")};
+  text-align: center;
+  font-size: 60px;
+  border-radius: 5px;
   border: 2px solid #000;
 `;
 

@@ -19,25 +19,21 @@ const initialStateFunction = () => {
   const cardColors = [
     {
       name: "Hearts",
-      short: "H",
       symbol: "♥",
       color: "red",
     },
     {
       name: "Clubs",
-      short: "C",
       symbol: "♣",
       color: "black",
     },
     {
       name: "Diamonds",
-      short: "D",
       symbol: "♦",
       color: "red",
     },
     {
       name: "Spades",
-      short: "S",
       symbol: "♠",
       color: "black",
     },

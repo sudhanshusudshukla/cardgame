@@ -9,6 +9,8 @@ import {
   CardValueBack,
   Button,
   CardWrapper,
+  PickedCard,
+  PickedCardValueBack,
 } from "./Cards.styled";
 
 const Cards = () => {
@@ -42,14 +44,14 @@ const Cards = () => {
       <CardWrapper>
         {picked &&
           picked.map((p, count) => (
-            <Card key={count} onClick={() => onWithdraw(count)}>
+            <PickedCard key={count} onClick={() => onWithdraw(count)}>
               <CardDisplay>
                 <CardValueFront></CardValueFront>
-                <CardValueBack color={p.suit.color}>
+                <PickedCardValueBack color={p.suit.color}>
                   {p.value} {p.suit.symbol}
-                </CardValueBack>
+                </PickedCardValueBack>
               </CardDisplay>
-            </Card>
+            </PickedCard>
           ))}
       </CardWrapper>
       <Button onClick={onShuffle}>Shuffle</Button>
