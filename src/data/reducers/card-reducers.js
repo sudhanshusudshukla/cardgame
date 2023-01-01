@@ -1,4 +1,4 @@
-import { CARDSHUFFLE } from "../actions/card-actions";
+import { CARDSHUFFLE, CARDWITHDRAW } from "../actions/card-actions";
 
 const initialStateFunction = () => {
   const cardValues = [
@@ -16,7 +16,32 @@ const initialStateFunction = () => {
     "Q",
     "K",
   ];
-  const cardColors = ["Hearts", "Diamonds", "Spades", "Clubs"];
+  const cardColors = [
+    {
+      name: "Hearts",
+      short: "H",
+      symbol: "♥",
+      color: "red",
+    },
+    {
+      name: "Clubs",
+      short: "C",
+      symbol: "♣",
+      color: "black",
+    },
+    {
+      name: "Diamonds",
+      short: "D",
+      symbol: "♦",
+      color: "red",
+    },
+    {
+      name: "Spades",
+      short: "S",
+      symbol: "♠",
+      color: "black",
+    },
+  ];
   const cards = [];
   for (let s = 0; s < cardColors.length; s++) {
     for (let v = 0; v < cardValues.length; v++) {
@@ -28,25 +53,37 @@ const initialStateFunction = () => {
   return cards;
 };
 
-const cardShuffle = (cards) => {
-  const anyRandom = Math.floor(Math.random() * 51);
-  const cardShuffleValue = cards[anyRandom].value;
-  const cardShuffleSuit = cards[anyRandom].suit;
-  let entity;
-  cardShuffleSuit === "Diamonds"
-    ? (entity = "&diams;")
-    : (entity = "&" + cardShuffleSuit.toLowerCase() + ";");
+const cardShuffle = (card) => {
+  return card.sort(() => Math.random() - 0.5);
 };
-const cards = initialStateFunction();
-cardShuffle(cards);
 
-const cardReducer = (state = initialStateFunction, action) => {
+const cardWithdraw = (card, count) => {
+  let picked = card.filter((v, i) => count.payload === i);
+  let rest = card.filter((v, i) => count.payload !== i);
+  return { rest, picked };
+};
+
+const cards = initialStateFunction();
+
+const initialState = {
+  cards: cards,
+};
+
+const cardReducer = (state = initialState, action) => {
   switch (action.type) {
     case CARDSHUFFLE:
       return {
         ...state,
-        cards: state.cards,
+        cards: cardShuffle(state.cards),
       };
+    case CARDWITHDRAW:
+      const c = cardWithdraw(state.cards, action.payload.count);
+      return {
+        ...state,
+        cards: c.rest,
+        picked: c.picked,
+      };
+
     default:
       return state;
   }

@@ -14,14 +14,12 @@ export const CardContainer = styled.div`
   padding: 2rem;
 `;
 
+export const CardWrapper = styled.div``;
+
 export const Card = styled.div`
   width: 300px;
   height: 400px;
   margin: 0 auto;
-  //border-radius: 15px;
-  //box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
-  //border: 1px solid #000;
-
   float: left;
   perspective: 500px;
 
@@ -38,23 +36,13 @@ export const CardDisplay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: inline-block;
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-
   flex-direction: column;
-  //height: inherit;
-
   transition: transform 1s;
   transform-style: preserve-3d;
-
-  // transition: transform 1s;
-  // transform-style: preserve-3d;
-  // :hover {
-  //   transform: rotateY(180deg);
-  //   transition: transform 0.5s;
-  // }
 `;
 
 export const CardValueFront = styled.div`
@@ -69,7 +57,18 @@ export const CardValueFront = styled.div`
   font-size: 60px;
   border-radius: 5px;
   backface-visibility: hidden;
-  border: 1px solid #000;
+  border: 2px solid #fff;
+`;
+
+export const Button = styled("button")`
+  border: 1px solid grey;
+  border-radius: 20px;
+  margin: 10px;
+  font-size: 18px;
+  background-color: #04043d;
+  color: #fff;
+  padding: 20px;
+  cursor: pointer;
 `;
 
 export const CardValueBack = styled.div`
@@ -78,13 +77,13 @@ export const CardValueBack = styled.div`
   width: 100%;
   background: white;
   line-height: 300px;
-  color: #03446a;
+  color: ${(props) => (props.color === "black" ? "black" : "red")};
   text-align: center;
   font-size: 60px;
   border-radius: 5px;
   backface-visibility: hidden;
   transform: rotateY(180deg);
-  border: 1px solid #000;
+  border: 2px solid #000;
 `;
 
 export const Top = styled.div`
