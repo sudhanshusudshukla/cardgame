@@ -30,7 +30,11 @@ const Cards = () => {
       <CardContainer>
         <CardWrapper>
           {cards.map((c, count) => (
-            <Card key={count} onClick={() => onWithdraw(count)}>
+            <Card
+              data-testid={`withdraw-${count}`}
+              key={count}
+              onClick={() => onWithdraw(count)}
+            >
               <CardDisplay>
                 <CardValueFront></CardValueFront>
                 <CardValueBack color={c.suit.color}>
@@ -41,7 +45,7 @@ const Cards = () => {
           ))}
         </CardWrapper>
       </CardContainer>
-      <CardWrapper>
+      <CardWrapper data-testid="picked-card">
         {picked &&
           picked.map((p, count) => (
             <PickedCard key={count} onClick={() => onWithdraw(count)}>
@@ -54,7 +58,9 @@ const Cards = () => {
             </PickedCard>
           ))}
       </CardWrapper>
-      <Button onClick={onShuffle}>Shuffle</Button>
+      <Button data-testid="shuffle-button" onClick={onShuffle}>
+        Shuffle
+      </Button>
     </>
   );
 };
