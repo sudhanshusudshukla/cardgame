@@ -1,6 +1,5 @@
-import { render } from "@testing-library/react";
 import App from "./App";
-//import ReactDOM from "react-dom";
+import renderWithRedux from "./utils/renderWithRedux";
 
 //jest.mock("react-dom", () => ({ render: jest.fn() }));
 
@@ -11,8 +10,8 @@ import App from "./App";
 //   expect(ReactDOM.render).toHaveBeenCalled();
 // });
 
-test("renders learn react link", () => {
+test("it should render the App component with Redux", () => {
   const div = document.createElement("div");
-  render(<App />, div);
+  renderWithRedux(<App />, div);
   global.document.id = (id) => id === "root" && div;
 });
